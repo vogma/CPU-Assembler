@@ -10,5 +10,19 @@ package de.vogma.cpu.assembler.model;
  * @author root
  */
 public enum InstructionSet {
-    NOP, MOV, IN, STO, LOD, PUSH, POP, PRN, CALL, RTS, ADD, SUB, INC, DEC, COMP, SHIFTL, SHIFTR, ROTL, ROTR, AND, OR, NOR, NAND, XOR, XNOR
+    NOP("00"), MOV("01"), IN("02"), STO("03"), LOD("04"), PUSH("05"), POP("06"), PRN("07"), CALL("08"), RTS("09"), ADD("0A"), SUB("0B"), INC(""), DEC(""), COMP(""), SHIFTL(""), SHIFTR(""), ROTL(""), ROTR(""), AND(""), OR(""), NOR(""), NAND(""), XOR(""), XNOR("");
+
+    private String opcode;
+
+    private InstructionSet(String opcode) {
+        this.opcode = opcode;
+    }
+
+    public String hex() {
+        return opcode;
+    }
+    
+    public String binary(){
+        return "00001";
+    }
 }
