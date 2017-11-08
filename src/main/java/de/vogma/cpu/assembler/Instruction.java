@@ -23,38 +23,56 @@
  */
 package de.vogma.cpu.assembler;
 
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+/**
+ *
+ * @author Marco Vogel
+ */
+public class Instruction {
 
+    private String opCode;
+    private String argument;
+    private String source;
+    private String drain;
 
-public class MainApp extends Application {
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
-        
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
-        stage.setTitle("JavaFX and Maven");
-        stage.setScene(scene);
-        stage.show();
+    public Instruction(String opCode, String argument, String source, String drain) {
+        this.opCode = opCode;
+        this.argument = argument;
+        this.source = source;
+        this.drain = drain;
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
+    public Instruction() {
     }
 
+    public String getOpCode() {
+        return opCode;
+    }
+
+    public void setOpCode(String opCode) {
+        this.opCode = opCode;
+    }
+
+    public String getArgument() {
+        return argument;
+    }
+
+    public void setArgument(String argument) {
+        this.argument = argument;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getDrain() {
+        return drain;
+    }
+
+    public void setDrain(String drain) {
+        this.drain = drain;
+    }
 }

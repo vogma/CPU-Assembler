@@ -10,8 +10,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.vogma.cpu.assembler.FXMLController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -36,8 +35,8 @@
    <center>
       <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="codeEditor" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="hexEditor" prefHeight="200.0" prefWidth="200.0" />
          </items>
       </SplitPane>
    </center>
@@ -45,7 +44,7 @@
       <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="BOTTOM_LEFT">
         <buttons>
             <Button mnemonicParsing="false" text="Clear" />
-          <Button mnemonicParsing="false" text="Compile">
+          <Button fx:id="parsePressed" mnemonicParsing="false" onAction="#parsePressed" text="Parse">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
