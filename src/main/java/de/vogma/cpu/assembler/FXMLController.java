@@ -27,12 +27,17 @@ import de.vogma.cpu.assembler.model.InstructionSet;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class FXMLController implements Initializable {
+
+    private Parser parser;
 
     @FXML
     private Label label;
@@ -53,13 +58,27 @@ public class FXMLController implements Initializable {
     @FXML
     private void parsePressed(ActionEvent event) {
         String s = codeEditor.getText();
-        Parser parser = new Parser(codeEditor.getText());
-        hexEditor.setText(parser.parse());
-        System.err.println("parsePressed");
+        hexEditor.setText(parser.parse(s));
+        System.err.println("----Parse pressed-----");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        init();
+    }
+
+    private void init() {
+        parser = new Parser();
+        codeEditor.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER && event.isControlDown()) {
+                    System.err.println("----Parse Shourtcut Pressed-----");
+                    String s = codeEditor.getText();
+                    hexEditor.setText(parser.parse(s));
+                    System.err.println(Integer.toString(16, 2));
+                }
+            }
+        });
     }
 }

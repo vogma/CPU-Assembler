@@ -23,18 +23,13 @@
  */
 package de.vogma.cpu.assembler;
 
-import de.vogma.cpu.assembler.model.InstructionSet;
-
 /**
  *
  * @author root
  */
 class Parser {
 
-    private String code;
-
-    public Parser(String code) {
-        this.code = code;
+    public Parser() {
     }
 
     
@@ -42,7 +37,8 @@ class Parser {
      * Initilisiert die Herstellung von HEX-Code für Logisim
      * @return String: Formatierter HEX-Code. Kann so in Speicher geladen werden.
      */
-    public String parse() {
+    public String parse(String code) {
+         code = code.replace("\n", "");
 //        return "v2.0 raw\n02000303 \n"
 //                + "05000000 \n"
 //                + "01000001   \n"
@@ -53,25 +49,18 @@ class Parser {
         parseCommands(lines);
         String output = "v2.0 raw\n";
         for (String a : lines) {
-            output = output.concat(a);
+            output = output.concat(a).concat("\n");
         }
         return output;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     /**
-     * Durchläuft jede Codezeile und ruft Methode createInstructions auf
+     * Durchläuft jede Codezeile und ruft Methode createInstruction auf
      * @param lines Alle Zeilen die zu parsen sind. 
      */
     private void parseCommands(String[] lines) {
         for (String line : lines) {
+            System.err.println("DEBUG: "+line);
             createInstruction(line);
         }
     }
